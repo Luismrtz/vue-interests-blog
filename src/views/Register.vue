@@ -33,7 +33,7 @@
             <div class="forgot-wrapper">
                 <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"> Forgot password?</router-link>
             </div>
-            <button @click.prevent="register" class="form-button">Register</button>
+            <button @click.prevent="registerIt" class="form-button">Register</button>
 
                   <p class="login-register">
                 Already have an account?
@@ -49,7 +49,7 @@ export default {
     name: 'Register',
 
         methods: {
-        register() {
+        registerIt() {
             console.log('poop');
         }
     }
