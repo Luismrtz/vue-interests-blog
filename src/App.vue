@@ -1,9 +1,9 @@
 <template>
 
 <div class="app">
-  <Navigation/>
+  <Navigation v-if="!navi"/>
   <router-view/>
-  <Footer/>
+  <Footer v-if="!navi"/>
 </div>
 
 </template>
@@ -14,7 +14,32 @@ import Footer from './components/Footer.vue';
 
 export default {
   name: "app",
-  components: { Navigation, Footer}
+  components: { Navigation, Footer},
+  data() {
+    return {
+      navi: null
+    }
+  },
+  created() {
+    this.checkRoute();
+  },
+    // mounted() {},
+  methods: {
+
+    checkRoute() {
+      if (this.$route.name ==='Login' || this.$route.name === "Register" || this.$route.name === "ForgotPassword") {
+        this.navi = true;
+        return;
+  
+      }
+      this.navi = false;
+    }
+  },
+    watch: {
+    $route() {
+      this.checkRoute();
+    }
+  },
 };
 
 </script>
@@ -42,7 +67,7 @@ html {
 /* --primary-color: #5774a1; */
 --secondary-color: #fff;
 --black-color:rgb(17, 17, 17);
---light-grey: rgb(211, 211, 211);
+--light-grey: rgb(224, 224, 224);
 --color-change: #D96767;
 
 --dark-grey: #303030;
@@ -119,27 +144,44 @@ html {
   }
 }
 
-.buttonForm {
+.form-button {
     display: flex;
   align-items: center;
   justify-content: center;
-   transition: 500ms ease all;
+   transition: .3s ease all;
   cursor: pointer;
-  font-size: 1.5rem;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-size: var(--md);
   font-weight: bold;
   /* margin-top: 10; */
   /* padding: 1.5rem 2.5rem; */
   /* width: 11rem;
   height: 5rem; */
-  padding: 2rem 2rem;
+  padding:1rem 1.7rem;
   /* background-colo; */
   
-  /* border-radius: 20px; */
-  border: 3px solid;
+  border-radius: 1.5rem;
+  border: 2px solid var(--primary-color);
 
   text-transform: uppercase;
   &:focus {
     outline: none;
+
+  }
+
+
+
+  &:hover {
+  border: 2px solid var(--color-change);
+  color: var(--color-change);
+ 
+    transform:translateY(-3px);
+    box-shadow: var(--boxShadow);
+  }
+
+    &:active {
+    transform:translateY(-1px);
   }
 }
 
