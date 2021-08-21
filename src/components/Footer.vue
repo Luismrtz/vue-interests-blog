@@ -38,7 +38,7 @@
 
     </div>
           <div class="right">
-        <p>Copyright 2021 All Rights Reserved</p>
+        <p>Copyright {{new Date().getFullYear()}}. All Rights Reserved</p>
       </div>
   </footer>
 </template>
@@ -66,13 +66,13 @@ export default  defineComponent({
 footer {
   margin-top: auto;
   padding: 10rem 5rem 4rem 5rem;
-  background-color: #303030;
+  background-color: var(--dark-grey);
 
 
     .right {
         margin-top: 6rem;
-      gap: 32px;
-      color: #fff;
+      gap: 3.2rem;
+      color: var(--secondary-color);
       align-items: center;
       flex-direction: column;
       justify-content: center;
@@ -86,21 +86,18 @@ footer {
   .container {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 3.2rem;
     @media (min-width: 800px) {
  
       flex-direction: row;
       gap: 0px;
 
-      /* .flex1 {
-          flex: 1;
-      } */
     }
     
     .left {
 
-      gap: 32px;
-      color: #fff;
+      gap: 3.2rem;
+      color: var(--secondary-color);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -119,9 +116,9 @@ footer {
       }
       .header {
         text-align: center;
-        font-size: 24px;
-        color: #fff;
-        margin-bottom: 16px;
+        font-size: var(--xxl);
+        color:var(--secondary-color);
+        margin-bottom: 1.6rem;
         text-decoration: none;
         font-weight: 600;
         @media (min-width: 800px) {
@@ -129,13 +126,13 @@ footer {
         }
       }
       ul {
-        gap: 16px;
+        gap: 1.6rem;
         list-style: none;
         display: flex;
       }
       .col-1,
       .col-2 {
-        gap: 32px;
+        gap: 3.2rem;
         display: flex;
      
         @media (min-width: 800px) {
@@ -157,11 +154,11 @@ footer {
             display: flex;
             align-items: center;
             .svg-icon {
-              width: 24px;
+              width: 2.4rem;
               height: auto;
               /* color: #fff; */
             /* fill: blue; */
-            color: blue;
+            color: var(--secondary-color);
             }
           }
         }
@@ -184,9 +181,9 @@ footer {
           }
           .link {
         
-            font-size: 16px;
+            font-size: var(--lg);
             font-weight: 500;
-            color: #fff;
+            color: var(--secondary-color);
             text-decoration: none;
           }
         }

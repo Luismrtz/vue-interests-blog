@@ -3,17 +3,17 @@
 
 <div class="imgBackdrop"></div>
 <div class="contentWrapper">
-    <div class="grid">
-        <h1 class="bannerText">
-            poop poop poop poop
-        </h1>
-        <!-- <h1 class="emptySpace"> pooop pooop opo poopop</h1> -->
+    <div class="row">
+        <div class="column">
+            <h1 class="bannerText">
+                Howdy! <span class="colorChange">Welcome</span> to my website!
+            </h1>
+            <button class="button">Sign up &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+        </div>
         
+
     </div>
 
-    <!-- <h1 class="button">
-        POOP
-    </h1> -->
 </div>
 
 
@@ -72,7 +72,7 @@ methods: {
     bottom:0;
     left:0;
     position: absolute;
-    background: rgba(9, 9, 10, 0.205);
+    background: var(--img-back-drop);
     width: 100%;
     height: 84rem;
     }
@@ -99,7 +99,7 @@ methods: {
     width: 100%;
 
     
-   .grid {
+   .row {
         /* position: absolute; */
         z-index: 50;
         display: flex;
@@ -108,27 +108,55 @@ methods: {
         width: 100%;
         height: 40vh;
     max-width: 120rem;
-     margin: 15rem auto;
+     margin: 19rem auto 15rem auto;
+
+
+     @media (max-width: 1200px) {
+         margin: 21rem auto 15rem auto;
+     }
+
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            max-width: 35rem;
+            gap: 3rem;
+            .bannerText {
         
-        .bannerText {
-            flex: 1;
-     
+                text-transform: uppercase;
+                font-size: var(--h1);
+                color: var(--secondary-color);
+                   line-height: 4.5rem;
+                font-weight: bold;
+                /* flex: 1; */
+    
+            @media (max-width: 800px) {
+                line-height: 4rem;
+                font-size: var(--xxl);
+            }
+    
+                .colorChange {
+                    color: var(--color-change);
+                }
+         
+            }
+    
+            .button {
+                border-color: var(--secondary-color);
+                color: var(--secondary-color);
+                max-width: 15rem;
+                
+                &:hover {
+                    border-color: var(--color-change);
+                    color: var(--color-change);
+                }
+            }
         }
-        .emptySpace {
-            /* text-align: end;
-            justify-items: flex-end;
-            align-items: flex-end;
-            align-content: flex-end; */
-            flex: 1;
-        }
+
+
+
     }
 
-    /* .button {
-        
-        text-align: center;
-  
-
-    } */
 }
  
 }

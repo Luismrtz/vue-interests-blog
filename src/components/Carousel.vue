@@ -1,21 +1,32 @@
 <template>
 <div class="carouselWrapper">
 
- <!-- SCSS called from within GLOBAL css (App.vue) -->
-        <div class="blog-cards">
-            <!-- temporary, will call as component -->
-            <div class="blog"></div>
-            <div class="blog"></div>
-            <div class="blog"></div>
-            <div class="blog"></div>
-        </div>
+<div class="max-width-wrapper">
+
+  <h2>View More Blogs</h2>
+  <!-- SCSS called from within GLOBAL css (App.vue) -->
+      <div class="blog-cards">
+              <!-- temporary, will call as component -->
+       <BlogCard :post="post" v-for="(post,index) in sampleBlog" :key="index"/>
+        
+          </div>
+</div>
      
   </div>
 </template>
 
 <script>
+import BlogCard from './BlogCard.vue'
 export default {
     name: 'carousel',
+    components: {
+      BlogCard
+    },
+      computed : {
+    sampleBlog() {
+      return this.$store.state.sampleBlogCards.slice(0, 4);
+    }
+  }
 
 
 }
@@ -26,19 +37,42 @@ export default {
 .carouselWrapper {
     padding: 10rem 2.5rem;
     /* height: 40rem; */
+     background-color: var(--light-grey);
    
+   .max-width-wrapper {
+     margin: 0 auto;
+     max-width: 120rem;
+
+     h2 {
+       font-size: var(--xxl);
+       margin-bottom: 3rem;
+     }
+
     /* display: flex; */
     /* flex-direction: column; */
-    background-color: rgb(148, 148, 148);
     /* align-items: center;
     justify-content: center; */
     @media (max-width: 800px) {
-      //! flex left to right when ABOVE 799px
+ 
       /* padding: 125px 25px; */
       /* flex-direction: row;
       justify-content: center; */
     }
         //temporary
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+
 
     
 }

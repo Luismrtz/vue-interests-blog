@@ -2,7 +2,7 @@
   <header>
       <div class="container">
         <div class="title">
-           <router-link   class="link" :to="{ name: 'Home' }"><h2>PinBlogs</h2></router-link>    
+           <router-link   class="linkTitle" :to="{ name: 'Home' }"><h2>PinBlogs</h2></router-link>    
         </div>
         <div class="navLinks" v-show="!mobile">
          
@@ -17,8 +17,9 @@
         <div  @wheel.prevent @touchmove.prevent @scroll.prevent @click.self="toggleMobileNav" v-show="mobileNav" class="backdrop"></div>
         <transition name="mobile-nav"  @wheel.prevent @touchmove.prevent @scroll.prevent>
           <ul  class="mobile-nav" v-show="mobileNav">
-            <router-link @click="toggleMobileNav"  class="link" :to="{ name: 'Home' }">Home</router-link>
-            <router-link  @click="toggleMobileNav" class="link" :to="{ name: 'BlogPage' }">Blogs</router-link>
+            <router-link @click="toggleMobileNav"  class="link mobileLink" :to="{ name: 'Home' }">Home</router-link>
+            <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'BlogPage' }">Blogs</router-link>
+            <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'Login' }">Login/Register</router-link>
           <!-- <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link> -->
           </ul>
         </transition>
@@ -68,7 +69,8 @@ export default {
 <style lang="scss" scoped>
 header {
   padding: 0 2.5rem;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
+  box-shadow: var(--boxShadow);
   z-index: 100;
 
   .container {
@@ -78,16 +80,29 @@ header {
     max-width: 120rem;
     margin: auto;
     padding: 3rem 0;
-  
+
+
+
+
     
     .title {
-      font-size: 2rem;
+
+      font-size: var(--h2);
+
+      
+        .linkTitle {
+          transition: all .2s ease; cursor: pointer;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: var(--black-color);
+
+        }
     }
 
     .navLinks {
       display: flex;
-     
-        gap: 4rem;
+     font-size: var(--h3);
+        gap: 3.5rem;
       /* > h3 {
         
       } */
@@ -101,7 +116,7 @@ header {
     /* position: absolute; */
     /* top: 32px;
     right: 25px; */
-    height: 25px;
+    height: 2.5rem;
     width: auto;
   }
 
@@ -111,25 +126,30 @@ header {
     bottom:0;
     left:0;
     position: fixed;
-    background: rgba(0,0,0,0.5);
+    background: var(--back-drop);
     width: 100%;
     height: 100%;
 }
 
     .mobile-nav {
-    padding: 20px;
+    padding: 2rem;
     width: 70%;
-    max-width: 250px;
+    max-width: 25rem;
     display: flex;
     flex-direction: column;
     position: fixed;
     height: 100%;
-    background-color: #303030;
+    background-color: var(--dark-grey);
     top: 0;
     left: 0;
+
+    font-size: var(--sm);
     .link {
-      padding: 15px 0;
-      color: #fff;
+      padding: 1.5rem 0;
+      color: var(--secondary-color);
+    }
+    .mobileLink {
+      
     }
   }
 
@@ -141,7 +161,7 @@ header {
 
         // when transition starts, its starts at -250px
     .mobile-nav-enter-from {
-        transform: translateX(-250px) ;
+        transform: translateX(-25rem) ;
     }
     // then it transforms/translates to 0  ("enter to") is a vue property
     .mobile-nav-enter-to {
@@ -149,8 +169,7 @@ header {
     }
     // translates to -250 on leave ("-leave-to") is also a vue property
     .mobile-nav-leave-to {
-
-        transform: translateX(-250px);
+        transform: translateX(-25rem);
     }
 }
 </style>

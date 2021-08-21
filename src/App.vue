@@ -37,7 +37,38 @@ html {
 
 
 :root {
---primary-color: #5774a1;
+  //?colors
+--primary-color: #365077;
+/* --primary-color: #5774a1; */
+--secondary-color: #fff;
+--black-color:rgb(17, 17, 17);
+--light-grey: rgb(211, 211, 211);
+--color-change: #D96767;
+
+--dark-grey: #303030;
+
+--boxShadow:  0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+
+--back-drop: rgba(0,0,0,0.5);
+--img-back-drop: rgba(9, 9, 10, 0.37);
+
+
+//? font sizes
+ --xsm: 1rem;
+ --sm: 1.2rem;
+ --md: 1.5rem;
+ --lg: 1.7rem;
+ --xl: 2rem;
+ --xxl: 2.8rem;
+
+--h1: 3.5rem; 
+--h2: 1.8rem;
+--h3: 1.2rem;
+--h4: 1.1rem;
+--h5: 1rem;
+--h6: 1rem;
+//? 
 }
 
 .app {
@@ -51,18 +82,19 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-   transition: 500ms ease all;
+   transition: .2s ease all;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: var(--md);
   font-weight: bold;
   /* margin-top: 10; */
   /* padding: 1.5rem 2.5rem; */
   /* width: 11rem;
   height: 5rem; */
-  padding: 2rem 2rem;
+  padding: 1.6rem 1.8rem;
   /* background-colo; */
   
   /* border-radius: 20px; */
+  background-color: transparent;
   border: 3px solid;
 
   text-transform: uppercase;
@@ -70,6 +102,21 @@ html {
     outline: none;
   }
 
+
+
+}
+
+
+.link {
+  transition: all .2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--black-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
 }
 
 .buttonForm {
@@ -102,33 +149,29 @@ html {
   .blog-cards {
     display: grid;
 
-    margin: 0 auto;
-    max-width: 120rem;
+   
     gap: 4rem;
     justify-items: center;
     grid-template-columns: repeat(4, 1fr);
       @media (max-width: 1200px) {
         grid-template-columns: repeat(3, 1fr);
-      }
+       }
       @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
         }
-    @media (max-width: 500px) {
+      @media (max-width: 500px) {
       grid-template-columns: repeat(1, 1fr);
-    }
+       }
 
-
-
-            .blog {
-          
+         /* .blog {
             width: 100%;
             height: 40rem;
             background-color: #fff;
             border: 2px rgb(23, 55, 85) solid;
+  
+        } */
 
-
-   
-        }
+ 
   }
 
 

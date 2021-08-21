@@ -1,5 +1,5 @@
 <template>
-  <Blogs/>
+  <Blogs />
 </template>
 
 <script>
@@ -9,7 +9,12 @@ export default {
 
   components: {
     Blogs
-  }
+  },
+  //   computed : {
+  //   sampleBlog() {
+  //     return this.$store.state.sampleBlogCards
+  //   }
+  // }
 
 }
 </script>
