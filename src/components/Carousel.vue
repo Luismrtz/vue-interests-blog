@@ -7,7 +7,7 @@
   <!-- SCSS called from within GLOBAL css (App.vue) -->
       <div class="blog-cards">
               <!-- temporary, will call as component -->
-       <BlogCard :post="post" v-for="(post,index) in sampleBlog" :key="index"/>
+       <BlogCard :post="post" v-for="(post,index) in sampleBlog2" :key="index"/>
         
           </div>
 </div>
@@ -23,7 +23,7 @@ export default {
       BlogCard
     },
       computed : {
-    sampleBlog() {
+    sampleBlog2() {
       return this.$store.state.sampleBlogCards.slice(0, 4);
     }
   }
