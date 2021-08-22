@@ -1,7 +1,8 @@
 <template>
   <div class="form-background">
       <div class="form-backdrop"></div>
-      <img src="../assets/scifi-1920.jpg" alt="scifi">
+        <img v-if="mobile" src="../assets/scifi-640.jpg" alt="scifi Img">
+        <img v-else src="../assets/scifi-1920.jpg" alt="syfy Img">  
       <div class="form-wrapper">
         <form class="login">
             <div class="back-home-wrapper">
@@ -35,8 +36,27 @@
 <script>
 export default {
     name: 'Login',
+    data() {
+    return {
+        mobile: null,
+        windowWidth: null
+    }
+},
+created() {
+ window.addEventListener("resize", this.checkScreen);
+this.checkScreen();
+},
 
     methods: {
+            checkScreen() {
+      this.windowWidth = window.innerWidth;
+      if (this.windowWidth <= 750) {
+        this.mobile = true;
+        return;
+      }
+      this.mobile = false;
+      return;
+    },
         signIn() {
             console.log('poop');
         }

@@ -1,32 +1,35 @@
 <template>
-  <header>
-      <div class="container">
-        <div class="title">
-           <router-link   class="linkTitle" :to="{ name: 'Home' }"><h2>PinBlogs</h2></router-link>    
-        </div>
-        <div class="navLinks" v-show="!mobile">
-         
-            <router-link   class="link" :to="{ name: 'Home' }"><h3>Home</h3></router-link>    
-           <router-link   class="link" :to="{ name: 'BlogPage' }"><h3>Blogs</h3></router-link>
-    
-           <router-link   class="link" :to="{ name: 'Login' }"><h3>Login/Register</h3></router-link>
-        </div>
-         <fa @click="toggleMobileNav" :icon="['fas','bars']" class="menu-icon"  v-show="mobile"/>
-      </div>
-      
-        <div  @wheel.prevent @touchmove.prevent @scroll.prevent @click.self="toggleMobileNav" v-show="mobileNav" class="backdrop"></div>
-        <transition name="mobile-nav"  @wheel.prevent @touchmove.prevent @scroll.prevent>
-          <ul  class="mobile-nav" v-show="mobileNav">
-            <router-link @click="toggleMobileNav"  class="link mobileLink" :to="{ name: 'Home' }">Home</router-link>
-            <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'BlogPage' }">Blogs</router-link>
-            <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'Login' }">Login/Register</router-link>
-          <!-- <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link> -->
-          </ul>
-        </transition>
-  </header>
+
+    <header>
+          <div class="container">
+            <div class="title">
+              <router-link   class="linkTitle" :to="{ name: 'Home' }"><h2>PinBlogs</h2></router-link>    
+            </div>
+            <div class="navLinks" v-show="!mobile">
+            
+                <router-link   class="link" :to="{ name: 'Home' }"><h3>Home</h3></router-link>    
+              <router-link   class="link" :to="{ name: 'BlogPage' }"><h3>Blogs</h3></router-link>
+        
+              <router-link   class="link" :to="{ name: 'Login' }"><h3>Login/Register</h3></router-link>
+            </div>
+            <fa @click="toggleMobileNav" :icon="['fas','bars']" class="menu-icon"  v-show="mobile"/>
+          </div>
+
+        
+          <div  @wheel.prevent @touchmove.prevent @scroll.prevent @click.self="toggleMobileNav" v-show="mobileNav" class="backdrop"></div>
+          <transition name="mobile-nav"  @wheel.prevent @touchmove.prevent @scroll.prevent>
+            <ul  class="mobile-nav" v-show="mobileNav">
+              <router-link @click="toggleMobileNav"  class="link mobileLink" :to="{ name: 'Home' }">Home</router-link>
+              <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'BlogPage' }">Blogs</router-link>
+              <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'Login' }">Login/Register</router-link>
+            <!-- <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link> -->
+            </ul>
+          </transition>
+    </header>
 </template>
 
 <script>
+
 export default {
   name: "navigations",
   data() {
@@ -40,10 +43,10 @@ export default {
     created() {
     window.addEventListener("resize", this.checkScreen);
     this.checkScreen();
-  },
-  watch: {
 
+    // this.scrollAnimation();
   },
+
 
 
   methods: {
@@ -68,12 +71,15 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  /* position: fixed;
+  width: 100%; */
   padding: 0 2.5rem;
   background-color: var(--secondary-color);
   box-shadow: var(--boxShadow);
   z-index: 100;
 
   .container {
+    /* position: fixed; */
     display: flex;
     justify-content: space-between;
     align-items: center;

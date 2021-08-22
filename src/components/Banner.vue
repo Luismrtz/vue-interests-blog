@@ -3,16 +3,18 @@
 
 <div class="imgBackdrop"></div>
 <div class="contentWrapper">
-    <div class="row">
-        <div class="column">
-            <h1 class="bannerText">
-                Howdy! <span class="colorChange">Welcome</span> to my website!
-            </h1>
-            <button class="button">Sign up &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+    <transition appear @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+    
+        <div class="row">
+            <div class="column">
+                <h1 class="bannerText">
+                    Howdy! <span class="colorChange">Welcome</span> to my website!
+                </h1>
+                <button class="button">Sign up &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+            </div>
         </div>
-        
 
-    </div>
+    </transition>
 
 </div>
 
@@ -31,6 +33,8 @@
 </template>
 
 <script>
+import gsap from 'gsap';
+
 export default {
 name: "banner",
 
@@ -57,6 +61,28 @@ methods: {
       this.mobile = false;
       return;
     },
+
+    beforeEnter(el) {
+        console.log('beforeEnter')
+        el.style.transform = 'translateY(-10rem)'
+        el.style.opacity = 0
+    },
+    enter(el, done) {
+        console.log('starting to enter')
+        gsap.to(el, {
+            duration: 1,
+            y: 0,
+            opacity: 1,
+            // ease: 'bounce.out'
+            // ease: 'bounce.out',
+            onComplete: done
+
+        })
+    },
+    afterEnter() {
+        console.log('after enter')
+    }
+
 }
 
 }

@@ -13,7 +13,10 @@
  </select>
         <div class="blog-cards">
             <!-- temporary, will call as component -->
-        <BlogCard :post="post" v-for="(post,index) in sampleBlog" :key="index"/>
+
+            <transition-group appear @before-enter="beforeEnter" @enter="enter">
+        <BlogCard :post="post" v-for="(post,index) in sampleBlog" :data-index="index" :key="index"/>
+            </transition-group>
         <!-- <BlogCard/>
         <BlogCard/>
         <BlogCard/>
@@ -28,6 +31,9 @@
 <script>
 
 import BlogCard from './BlogCard.vue';
+
+import gsap from 'gsap';
+
 export default {
   name: "Blogs",
     data() {
@@ -65,6 +71,22 @@ export default {
       }
 
     }
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0
+      el.style.transform = 'trnaslateY(60px)'
+    },
+    enter(el, done) {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: .7,
+        delay: el.dataset.index*0.1,
+        onComplete: done
+      })
+
+    }
   }
 
 }
@@ -73,7 +95,7 @@ export default {
 <style lang="scss" scoped>
 .blogsWrapper {
   background-color: var(--light-grey);
-    padding: 5rem 2.5rem 10rem;
+    padding: 5rem 2.5rem 15rem;
 
 .max-width-wrapper {
     margin: 0 auto;

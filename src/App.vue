@@ -1,7 +1,7 @@
 <template>
 
 <div class="app">
-  <Navigation v-if="!navi"/>
+    <Navigation v-if="!navi"/>
   <router-view/>
   <Footer v-if="!navi"/>
 </div>
@@ -33,7 +33,15 @@ export default {
   
       }
       this.navi = false;
-    }
+    },
+
+    
+
+
+
+
+
+
   },
     watch: {
     $route() {
