@@ -1,7 +1,7 @@
 <template>
   <div class="form-background">
       <div class="form-backdrop"></div>
-        <img v-if="mobile" src="../assets/scifi-640.jpg" alt="scifi Img">
+        <img v-if="mobile1" src="../assets/scifi-640.jpg" alt="scifi Img">
         <img v-else src="../assets/scifi-1920.jpg" alt="syfy Img">  
       <div class="form-wrapper">
         <form class="login">
@@ -50,7 +50,7 @@ export default {
     name: 'Register',
     data() {
     return {
-        mobile: null,
+        mobile1: null,
         windowWidth: null
     }
 },
@@ -63,10 +63,10 @@ this.checkScreen();
                 checkScreen() {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth <= 750) {
-        this.mobile = true;
+        this.mobile1 = true;
         return;
       }
-      this.mobile = false;
+      this.mobile1 = false;
       return;
     },
         registerIt() {
