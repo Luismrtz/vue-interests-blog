@@ -7,7 +7,10 @@
           <h5>Posted on: {{post.blogDate}}</h5>
         </div>
 
-        <div class="link">View more &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></div>
+       <router-link @click="scrollToTop" :to="{ name: 'Details', params: { id: this.post.id } }" class="link">
+           View more &nbsp;&nbsp;
+           <fa :icon="['fas','arrow-right']"  />
+         </router-link> 
       </div>
     </div>
 </template>
@@ -16,6 +19,12 @@
 export default {
     name: 'blogCard',
     props: ['post'],
+
+    methods: {
+        scrollToTop() {
+        window.scrollTo(0,0);
+    }
+    }
 
 }
 </script>
@@ -33,7 +42,7 @@ export default {
     transition: all .5s ease;
 
   &:hover {
-    transform:scale(1.01);
+    transform:translateY(-2px);
     box-shadow: var(--boxShadow);
   }
 
@@ -71,6 +80,7 @@ export default {
 
 
   .link {
+    text-decoration: none;
     display: inline-flex;
     align-items: flex-start;
     font-size: var(--md);

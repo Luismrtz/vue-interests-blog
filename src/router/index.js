@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import BlogPage from '../views/BlogPage.vue';
+import Details from '../views/Details.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import ForgotPassword from '../views/ForgotPassword.vue';
@@ -20,6 +21,14 @@ const routes = [
     component: BlogPage,
     meta: {
       title: 'BlogPage'
+    }
+  },
+  {
+    path: '/details/:id',
+    name: 'Details',
+    component: Details,
+    meta: {
+      title: 'Details'
     }
   },
   {
@@ -52,12 +61,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+
 });
 
 
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | pinsBlog`;
   next()
+  
 })
 
 export default router

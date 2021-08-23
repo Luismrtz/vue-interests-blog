@@ -16,9 +16,9 @@
         </div>
       </div>
       <div class="buttonWrapper">
-        <div class="button">
+        <router-link @click="scrollToTop" :to="{ name: 'BlogPage'}" class="button">
             Click Here &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  />
-        </div>
+        </router-link>
       </div>
   </div>
 </template>
@@ -49,6 +49,10 @@ methods: {
       this.mobile = false;
       return;
     },
+
+          scrollToTop() {
+                window.scrollTo(0,0);
+           }
 }
 
 }
@@ -118,6 +122,7 @@ methods: {
         justify-content: center;
 
         .button {
+          text-decoration: none;
             border-color: var(--primary-color);
             color: var(--primary-color);
 

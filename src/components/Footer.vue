@@ -3,12 +3,8 @@
     <div class="container">
       <div class="left">
         <div class="col-1">
-          <router-link class="header" :to="{ name: 'Home' }">PinsBlogs</router-link>
+          <router-link class="header" :to="{ name: 'Home' }">PINBLOGS</router-link>
           <ul>
-            <li>
-              <!-- <a href="#"><youTube class="svg-icon"/></a> -->
-              <fa icon="coffee" class="svg-icon"/>
-            </li>
             <li>
               <!-- <a href="#"><twitter class="svg-icon"/></a> -->
               <a href="#"><fa :icon="['fab', 'linkedin']"  class="svg-icon" /></a>
@@ -16,17 +12,14 @@
             <li>
           <a href="#"><fa :icon="['fab', 'github']"  class="svg-icon" /></a>
             </li>
-            <li>
-               <a href="#"><fa :icon="['far','arrow-alt-circle-down']"  class="svg-icon" /></a>
-            </li>
+
           </ul>
         </div>
         <div class="col-2">
           <ul>
-            <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-            <router-link class="link" to="#">Blogs</router-link>
-            <router-link class="link" to="#">Blogs</router-link>
-            <router-link class="link" to="#">Blogs</router-link>
+            <router-link @click="scrollToTop" class="link" :to="{ name: 'Home' }">Home</router-link>
+            <router-link @click="scrollToTop" class="link" :to="{ name: 'BlogPage' }">Blogs</router-link>
+            <router-link @click="scrollToTop" class="link" :to="{ name: 'Login' }">Login</router-link>
             <!-- <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link> -->
           </ul>
         </div>
@@ -55,17 +48,24 @@ export default  defineComponent({
     user() {
       return this.$store.state.user;
     },
+
 //     admin() {
 //       return this.$store.state.profileAdmin;
 //     },
   },
+
+          methods: {
+        scrollToTop() {
+        window.scrollTo(0,0);
+    }
+    }
 });
 </script>
 
 <style lang="scss" scoped>
 footer {
   margin-top: auto;
-  padding: 10rem 5rem 4rem 5rem;
+  padding: 7rem 5rem 4rem 5rem;
   background-color: var(--dark-grey);
 
 
@@ -134,8 +134,10 @@ footer {
       .col-2 {
         gap: 3.2rem;
         display: flex;
+        align-items: center;
      
         @media (min-width: 800px) {
+           align-items: initial;
           gap: 0;
         }
       }

@@ -24,7 +24,7 @@ export default {
     },
       computed : {
     sampleBlog2() {
-      return this.$store.state.sampleBlogCards.slice(0, 4);
+      return this.$store.getters.blogPostHome;
     }
   }
 
