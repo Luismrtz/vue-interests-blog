@@ -10,7 +10,12 @@
                 <h1 class="bannerText">
                     Howdy! <span class="colorChange">Welcome</span> to my website!
                 </h1>
-                <button class="button">Sign up &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+                <router-link class="textDecorationNone" v-if="!user" :to="{ name: 'Login' }">
+                    <button  class="button">Sign up &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+                </router-link>
+                <router-link class="textDecorationNone" v-else   :to="{ name: 'ProfilePage' }">
+                    <button class="button">Profile &nbsp;&nbsp;<fa :icon="['fas','arrow-right']"  /></button>
+                </router-link>
             </div>
         </div>
 
@@ -83,7 +88,12 @@ methods: {
         console.log('after enter')
     }
 
-}
+},
+      computed: {
+      user() {
+            return this.$store.state.user;
+      }
+    }
 
 }
 </script>

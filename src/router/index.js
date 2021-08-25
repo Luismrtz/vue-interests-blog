@@ -5,6 +5,10 @@ import Details from '../views/Details.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import ForgotPassword from '../views/ForgotPassword.vue';
+import ProfilePage from '../views/ProfilePage.vue';
+
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const routes = [
   {
@@ -12,7 +16,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Home'
+      title: 'Home',
+      requiresAuth: false,
     }
   },
   {
@@ -20,7 +25,8 @@ const routes = [
     name: 'BlogPage',
     component: BlogPage,
     meta: {
-      title: 'BlogPage'
+      title: 'BlogPage',
+      requiresAuth: false,
     }
   },
   {
@@ -28,7 +34,8 @@ const routes = [
     name: 'Details',
     component: Details,
     meta: {
-      title: 'Details'
+      title: 'Details',
+      requiresAuth: false,
     }
   },
   {
@@ -36,7 +43,8 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: {
-      title: 'Login'
+      title: 'Login',
+      requiresAuth: false,
     }
   },
   {
@@ -44,7 +52,8 @@ const routes = [
     name: 'Register',
     component: Register,
     meta: {
-      title: 'Register'
+      title: 'Register',
+      requiresAuth: false,
     }
   },
   {
@@ -52,7 +61,17 @@ const routes = [
     name: 'ForgotPassword',
     component: ForgotPassword,
     meta: {
-      title: 'ForgotPassword'
+      title: 'ForgotPassword',
+      requiresAuth: false,
+    }
+  },
+  {
+    path: '/profile',
+    name: 'ProfilePage',
+    component: ProfilePage,
+    meta: {
+      title: 'ProfilePage',
+      requiresAuth: true,
     }
   },
 
@@ -69,6 +88,28 @@ router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | pinsBlog`;
   next()
   
-})
+});
+
+router.beforeEach(async (to, from, next) => {
+  let user = firebase.auth().currentUser;
+  let admin = null;
+  if (user) {
+    let token = await user.getIdTokenResult();
+    admin = token.claims.admin;
+  }
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      if (to.matched.some((res) => res.meta.requiresAdmin)) {
+        if (admin) {
+          return next();
+        }
+        return next({ name: "Home" });
+      }
+      return next();
+    }
+    return next({ name: "Home" });
+  }
+  return next();
+});
 
 export default router

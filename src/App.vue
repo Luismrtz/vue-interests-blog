@@ -12,6 +12,9 @@
 import Navigation from './components/Navigation.vue';
 import Footer from './components/Footer.vue';
 
+import firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
   name: "app",
   components: { Navigation, Footer},
@@ -21,9 +24,17 @@ export default {
     }
   },
   created() {
+        firebase.auth().onAuthStateChanged((user) => {
+          this.$store.commit("updateUser", user);
+      if(user) {
+        this.$store.dispatch("getCurrentUser");
+        console.log(this.$store.state.profileEmail)
+      }
+        this.alreadyLoggedIn(user);
+    })
     this.checkRoute();
   },
-    // mounted() {},
+    mounted() {},
   methods: {
 
     checkRoute() {
@@ -34,6 +45,13 @@ export default {
       }
       this.navi = false;
     },
+
+    alreadyLoggedIn(user) {
+      if (user && (this.$route.name ==='Login' || this.$route.name === "Register" || this.$route.name === "ForgotPassword")) {
+          this.$router.push({name: "Home"});
+          // return;
+      }
+    }
 
     
 
@@ -46,6 +64,7 @@ export default {
     watch: {
     $route() {
       this.checkRoute();
+      this.alreadyLoggedIn();
     }
   },
 };
@@ -108,6 +127,16 @@ html {
     display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.error {
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.textDecorationNone {
+  text-decoration: none;
 }
 
 

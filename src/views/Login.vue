@@ -1,9 +1,9 @@
 <template>
-  <div class="form-background">
+  <div  class="form-background">
       <div class="form-backdrop"></div>
         <img v-if="mobile2" src="../assets/scifi-640.jpg" alt="scifi Img">
         <img v-else src="../assets/scifi-1920.jpg" alt="syfy Img">  
-      <div class="form-wrapper">
+      <div  class="form-wrapper">
         <form class="login">
             <div class="back-home-wrapper">
                 <router-link class="back-home" :to="{ name: 'Home' }"><fa :icon="['fas', 'arrow-left']"  class="icon" />&nbsp;&nbsp; Home</router-link> 
@@ -11,14 +11,15 @@
             <h2>Login</h2>
             <div class="form-inputs">
                 <div class="form-input">
-                    <input type="email" placeholder="Email" onfocus="this.placeholder=''" onblur="this.placeholder='Email'">
+                    <input v-model="email" type="email" placeholder="Email: testing@test.test" onfocus="this.placeholder=''" onblur="this.placeholder='Email: testing@test.test'">
                     <fa :icon="['fas', 'envelope']"  class="icon" />
                 </div>
                 <div class="form-input">
-                    <input type="password" placeholder="Password"  onfocus="this.placeholder=''" onblur="this.placeholder='Password'">
+                    <input v-model="password" type="password" placeholder="Password: testing"  onfocus="this.placeholder=''" onblur="this.placeholder='Password: testing'">
                     <fa :icon="['fas', 'lock']"  class="icon" />
                 </div>
             </div>
+            <div v-show="error" class="error">{{ this.errorMsg }}</div>
             <div class="forgot-wrapper">
                 <router-link class="forgot-password" :to="{ name: 'ForgotPassword' }"> Forgot password?</router-link>
             </div>
@@ -34,10 +35,18 @@
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth";
+
+
 export default {
     name: 'Login',
     data() {
     return {
+        email: "",
+        password: "",
+        error: null,
+        errorMsg: "",
         mobile2: null,
         windowWidth: null
     }
@@ -45,6 +54,9 @@ export default {
 created() {
  window.addEventListener("resize", this.checkScreen);
 this.checkScreen();
+// this.checkLogin();
+// return this.$store.state.user;
+
 },
 
     methods: {
@@ -57,10 +69,35 @@ this.checkScreen();
       this.mobile2 = false;
       return;
     },
+    // checkLogin() {
+    // if(this.$store.state.user) {
+    // this.$router.push({name: "Home"});
+    // }
+    // },
         signIn() {
-            console.log('poop');
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            .then(() => {
+                this.$router.push({name: "Home"});
+                this.error = false;
+                this.errorMsg = "";
+                console.log(firebase.auth().currentUser.uid);
+            })
+            .catch((err) => {
+                this.error = true;
+                this.errorMsg = err.message;
+            })
         }
+    },
+          computed: {
+    //   user() {
+    //         return this.$store.state.user;
+    //   }
+    },
+       watch: {
+    $route() {
+    //   this.checkLogin();
     }
+  },
 
 }
 </script>

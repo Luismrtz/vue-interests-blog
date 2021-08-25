@@ -16,7 +16,7 @@ export default {
   z-index: 101;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--back-drop);
   position: fixed;
   display: flex;
   justify-content: center;
@@ -28,12 +28,12 @@ export default {
   }
   span {
     display: block;
-    width: 60px;
-    height: 60px;
+    width: 6rem;
+    height: 6rem;
     margin: 0 auto;
-    border: 3px solid transparent;
-    border-top-color: #fff;
-    border-bottom-color: #fff;
+    border: .3rem solid transparent;
+    border-top-color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color);
     border-radius: 50%;
     animation: spin ease 1000ms infinite;
   }

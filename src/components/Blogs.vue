@@ -7,9 +7,9 @@
    <option value="all">All</option>
    <option value="sortOld">Oldest</option>
    <option value="sortNew">Recent</option>
-   <option value="pin">Pins</option>
-   <option value="hat">Hats</option>
-   <option value="jewelry">Jewelry</option>
+   <option value="surreal">Surreal</option>
+   <option value="nature">Nature</option>
+   <option value="cafe">Cafe</option>
  </select>
         <div class="blog-cards">
             <!-- temporary, will call as component -->
@@ -51,13 +51,13 @@ export default {
 },
   computed : {
     sampleBlog() {
-      if (this.myChoice === 'pin') {
+      if (this.myChoice === 'surreal') {
         return this.$store.state.sampleBlogCards.filter(x => x.type === this.myChoice);
       }
-      else if (this.myChoice === 'hat') {
+      else if (this.myChoice === 'nature') {
       return this.$store.state.sampleBlogCards.filter(x => x.type === this.myChoice);
       }
-      else if (this.myChoice === 'jewelry') {
+      else if (this.myChoice === 'cafe') {
       return this.$store.state.sampleBlogCards.filter(x => x.type === this.myChoice);
       }
       else if (this.myChoice === 'sortOld') {

@@ -14,7 +14,12 @@ export default {
   name: 'Home',
   components: {
     Banner, Display, Carousel
-  }
+  },
+      computed: {
+      user() {
+            return this.$store.state.user;
+      }
+    }
 }
 </script>
 

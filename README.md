@@ -1,4 +1,9 @@
-# vue-pin-blog
+# PinBlogs
+
+> Vue.js / Vuex / Firebase<br>
+
+
+
 
 ## Project setup
 ```

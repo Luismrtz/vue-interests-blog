@@ -7,10 +7,10 @@
           <ul>
             <li>
               <!-- <a href="#"><twitter class="svg-icon"/></a> -->
-              <a href="#"><fa :icon="['fab', 'linkedin']"  class="svg-icon" /></a>
+              <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-martinez-307742bb/"><fa :icon="['fab', 'linkedin']"  class="svg-icon" /></a>
             </li>
             <li>
-          <a href="#"><fa :icon="['fab', 'github']"  class="svg-icon" /></a>
+          <a target="_blank" rel="noreferrer" href="https://github.com/Luismrtz"><fa :icon="['fab', 'github']"  class="svg-icon" /></a>
             </li>
 
           </ul>
@@ -19,7 +19,7 @@
           <ul>
             <router-link @click="scrollToTop" class="link" :to="{ name: 'Home' }">Home</router-link>
             <router-link @click="scrollToTop" class="link" :to="{ name: 'BlogPage' }">Blogs</router-link>
-            <router-link @click="scrollToTop" class="link" :to="{ name: 'Login' }">Login</router-link>
+            <router-link v-if="!user" @click="scrollToTop" class="link" :to="{ name: 'Login' }">Login</router-link>
             <!-- <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link> -->
           </ul>
         </div>
@@ -48,10 +48,6 @@ export default  defineComponent({
     user() {
       return this.$store.state.user;
     },
-
-//     admin() {
-//       return this.$store.state.profileAdmin;
-//     },
   },
 
           methods: {
@@ -64,7 +60,9 @@ export default  defineComponent({
 
 <style lang="scss" scoped>
 footer {
+  /* bottom: 0; */
   margin-top: auto;
+  /* margin-bottom: auto; */
   padding: 7rem 5rem 4rem 5rem;
   background-color: var(--dark-grey);
 

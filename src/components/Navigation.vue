@@ -7,11 +7,35 @@
             </div>
             <div class="navLinks" v-show="!mobile">
             
-                <router-link   class="link" :to="{ name: 'Home' }"><h3>Home</h3></router-link>    
+              <router-link   class="link" :to="{ name: 'Home' }"><h3>Home</h3></router-link>    
               <router-link   class="link" :to="{ name: 'BlogPage' }"><h3>Blogs</h3></router-link>
         
-              <router-link   class="link" :to="{ name: 'Login' }"><h3>Login/Register</h3></router-link>
+              <router-link  v-if="!user"  class="link" :to="{ name: 'Login' }"><h3>Login/Register</h3></router-link>
+                <div v-if="user"  class=" hover-box">
+                  <h3 class="link">Sign Out &nbsp;<fa :icon="['fas','arrow-down']"  /></h3>
+                  <div class="hover-box-container">
+                    <div class="hover-box-wrapper">
+                      <router-link class="link" :to="{ name: 'ProfilePage' }">
+                      <h3 >Profile</h3>
+
+                      </router-link>
+                      <h3  @click="signOutFunc" class="link">Sign Out</h3>
+                      <!-- <h3 class="link">AHHHHH 123123123</h3> -->
+                      <!-- <h3 class="link">AHHHHH 123123123</h3>
+                      <h3 class="link">AHHHHH 123123123</h3> -->
+
+                    </div>
+                  </div>
+            
+
+                </div>
+         
+        
             </div>
+
+
+
+
             <fa @click="toggleMobileNav" :icon="['fas','bars']" class="menu-icon"  v-show="mobile"/>
           </div>
 
@@ -21,7 +45,9 @@
             <ul  class="mobile-nav" v-show="mobileNav">
               <router-link @click="toggleMobileNav"  class="link mobileLink" :to="{ name: 'Home' }">Home</router-link>
               <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'BlogPage' }">Blogs</router-link>
-              <router-link  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'Login' }">Login/Register</router-link>
+              <router-link v-if="!user"  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'Login' }">Login/Register</router-link>
+              <router-link v-if="user"  @click="toggleMobileNav" class="link mobileLink" :to="{ name: 'ProfilePage' }">Profile</router-link>
+              <router-link v-if="user"  @click="[signOutFunc, toggleMobileNav]" class="link mobileLink sign-out" to="#">Sign Out</router-link>
             <!-- <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link> -->
             </ul>
           </transition>
@@ -29,6 +55,9 @@
 </template>
 
 <script>
+
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
   name: "navigations",
@@ -38,6 +67,7 @@ export default {
       mobile: null,
       mobileNav: null,
       windowWidth: null,
+
     };
   },
     created() {
@@ -65,7 +95,17 @@ export default {
       this.mobileNav = !this.mobileNav;
     },
 
-  }
+        signOutFunc() {
+      firebase.auth().signOut();
+      window.location.reload();
+    },
+
+  },
+    computed: {
+        user() {
+            return this.$store.state.user;
+        }
+    }
 }
 </script>
 
@@ -112,6 +152,72 @@ header {
       /* > h3 {
         
       } */
+
+    .hover-box {
+      transition: all .3s ease;
+      &:hover > .hover-box-container {
+        /* opacity: 1; */
+        display: inline-block;
+
+
+        /* & > h3 {
+        border-bottom: 1px solid var(--light-grey);
+        } */
+      }
+
+
+
+      .hover-box-container {
+        display: none;
+        /* opacity: 0; */
+        /* background-color: rgba(94, 182, 68, 0.993); */
+        min-width: 8rem;
+        height: auto;
+        padding-top: 3.7rem;
+        position: absolute;
+        /* top: 0; */
+        .hover-box-wrapper {
+          white-space: nowrap;
+        
+          /* padding: .5rem; */
+          background-color: white;
+          transition: all .3s ease;
+        position: relative;
+        /* top: 9rem; */
+        min-width: 8rem;
+        height: auto;
+        border: 1px solid var(--light-grey);
+        box-shadow: var(--boxShadow);
+
+        h3 {
+          padding: .8rem .9rem;
+          &:hover {
+            background-color: var(--light-grey);
+            color: var(--primary-color);
+          }
+        }
+        
+      }
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
   }
 
@@ -150,12 +256,14 @@ header {
     left: 0;
 
     font-size: var(--sm);
-    .link {
-      padding: 1.5rem 0;
-      color: var(--secondary-color);
+
+
+    .sign-out {
+      border-top: 1px var(--secondary-color) solid;
     }
     .mobileLink {
-      
+            padding: 1.5rem 0;
+      color: var(--secondary-color);
     }
   }
 

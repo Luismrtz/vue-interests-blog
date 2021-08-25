@@ -42,9 +42,11 @@ export default {
            /* padding: 2rem; */
 
       .detail-wrapper {
+       /* display: flex;
+       flex: 1; */
           background-color: var(--secondary-color);
      margin: auto;
-     padding:  10rem 2rem;
+     padding:  10rem 2rem 15.5rem;
       max-width: 120rem;
 
     
