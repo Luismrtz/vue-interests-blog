@@ -3,22 +3,15 @@
 </template>
 
 <script>
-import Blogs from '../components/Blogs.vue';
+import Blogs from "../components/Blogs.vue";
 export default {
-  name: 'BlogPage',
+  name: "BlogPage",
 
   components: {
-    Blogs
+    Blogs,
   },
-  //   computed : {
-  //   sampleBlog() {
-  //     return this.$store.state.sampleBlogCards
-  //   }
-  // }
-
-}
+};
 </script>
 
 <style>
-
 </style>

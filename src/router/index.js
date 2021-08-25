@@ -1,93 +1,89 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import BlogPage from '../views/BlogPage.vue';
-import Details from '../views/Details.vue';
-import Login from '../views/Login.vue';
-import Register from '../views/Register.vue';
-import ForgotPassword from '../views/ForgotPassword.vue';
-import ProfilePage from '../views/ProfilePage.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import BlogPage from "../views/BlogPage.vue";
+import Details from "../views/Details.vue";
+import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
+import ForgotPassword from "../views/ForgotPassword.vue";
+import ProfilePage from "../views/ProfilePage.vue";
 
 import firebase from "firebase/app";
 import "firebase/auth";
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home,
     meta: {
-      title: 'Home',
+      title: "Home",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/blogs',
-    name: 'BlogPage',
+    path: "/blogs",
+    name: "BlogPage",
     component: BlogPage,
     meta: {
-      title: 'BlogPage',
+      title: "BlogPage",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/details/:id',
-    name: 'Details',
+    path: "/details/:id",
+    name: "Details",
     component: Details,
     meta: {
-      title: 'Details',
+      title: "Details",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/login',
-    name: 'Login',
+    path: "/login",
+    name: "Login",
     component: Login,
     meta: {
-      title: 'Login',
+      title: "Login",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/register',
-    name: 'Register',
+    path: "/register",
+    name: "Register",
     component: Register,
     meta: {
-      title: 'Register',
+      title: "Register",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/forgot-password',
-    name: 'ForgotPassword',
+    path: "/forgot-password",
+    name: "ForgotPassword",
     component: ForgotPassword,
     meta: {
-      title: 'ForgotPassword',
+      title: "ForgotPassword",
       requiresAuth: false,
-    }
+    },
   },
   {
-    path: '/profile',
-    name: 'ProfilePage',
+    path: "/profile",
+    name: "ProfilePage",
     component: ProfilePage,
     meta: {
-      title: 'ProfilePage',
+      title: "ProfilePage",
       requiresAuth: true,
-    }
+    },
   },
-
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-
+  routes,
 });
-
 
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | pinsBlog`;
-  next()
-  
+  next();
 });
 
 router.beforeEach(async (to, from, next) => {
@@ -112,4 +108,4 @@ router.beforeEach(async (to, from, next) => {
   return next();
 });
 
-export default router
+export default router;

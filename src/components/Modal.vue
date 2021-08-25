@@ -40,7 +40,7 @@ export default {
     background-color: #fff;
 
     p {
-        font-size: var(--sm);
+      font-size: var(--sm);
       text-align: center;
       margin-bottom: 2rem;
     }

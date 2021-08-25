@@ -31,7 +31,7 @@ export default {
     width: 6rem;
     height: 6rem;
     margin: 0 auto;
-    border: .3rem solid transparent;
+    border: 0.3rem solid transparent;
     border-top-color: var(--secondary-color);
     border-bottom-color: var(--secondary-color);
     border-radius: 50%;
