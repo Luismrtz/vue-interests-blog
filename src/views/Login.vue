@@ -106,8 +106,8 @@ export default {
 
 <style lang="scss">
 .form-background {
-  overflow: hidden;
-
+  /* overflow: hidden; */
+  position: relative;
   height: 100%;
 
   width: 100%;
