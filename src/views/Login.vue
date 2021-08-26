@@ -108,7 +108,7 @@ export default {
 .form-background {
   overflow: hidden;
 
-  height: 100vh;
+  height: 100%;
 
   width: 100%;
 
@@ -134,14 +134,17 @@ export default {
   }
 
   .form-wrapper {
+    position: relative;
     margin: 0 auto;
     max-width: 35rem;
     padding: 1.3rem;
+    min-height: 100vh;
     height: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* align-content: center; */
 
     form {
       z-index: 12;
